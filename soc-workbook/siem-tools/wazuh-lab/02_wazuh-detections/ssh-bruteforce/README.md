@@ -5,9 +5,9 @@ To simulate several failed SSH login attempts and verify how Wazuh detects this 
 
 ### Procedure:
 1. I attempted to connect to my own device with the following command:
-'
+'''
 ssh robe@127.0.0.1
-'
+'''
 
 2. I intentionally entered the wrong password multiple times.
 
@@ -15,26 +15,28 @@ ssh robe@127.0.0.1
 
 
 **The terminal displayed:**
-'
+'''
 Permission denied, please try again.
 Permission denied (publickey,password).
-'
+'''
 
 ### Results in Wazuh:
 Wazuh detected and logged the failed attempts with the following details:
 
 ![SSH failed attempt - Wazuh events](evidence/ssh-failed-events.png)
 
-'
+'''
 Description: sshd: authentication failed
 Rule ID: 5760
 Rule Level: 5
 User: robe
 Source IP: 127.0.0.1
 Program: sshd-session
-'
+'''
 **Example from full_log**
-'Failed password for robe from 127.0.0.1 port 57386 ssh2'
+'''
+Failed password for robe from 127.0.0.1 port 57386 ssh2
+'''
 
 ![SSH failed attempt - event details 1](evidence/ssh-failed-details-01.png)
 ![SSH failed attempt - event details 2](evidence/ssh-failed-details-02.png)
