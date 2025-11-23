@@ -1,15 +1,11 @@
-# PCAP Analysis – DNS Anomalies and Internal Reconnaissance  
-**Author:** Javier Ávila  
-**Tools:** Wireshark  
-**Date:** 2025  
-
+# PCAP Analysis – DNS Anomalies and Internal Reconnaissance   
+**Tools:** Wireshark   
 ---
 
 ## 1. Overview
 
 In this project, I analyzed a network capture file (`2022-03-21-traffic-analysis-exercise.pcap`) to identify suspicious activity related to DNS anomalies, internal reconnaissance, and possible post-exploitation behavior inside a Windows domain environment.
 
----
 
 ## 2. Objectives
 
@@ -19,7 +15,6 @@ In this project, I analyzed a network capture file (`2022-03-21-traffic-analysis
 - Detect internal reconnaissance techniques  
 - Document the main findings in a clear and professional format  
 
----
 
 ## 3. Methodology
 
@@ -32,9 +27,8 @@ I used Wireshark to apply targeted filters and examine different parts of the ca
 - SMB and LDAP communication  
 - Protocol hierarchy breakdown  
 
-All findings were supported with screenshots stored in the `screenshots/` folder.
+All findings were supported with screenshots stored in the `evidence/` folder.
 
----
 
 ## 4. Findings
 
@@ -62,25 +56,13 @@ After resolving the suspicious domain to 10.0.19.9, the workstation communicated
 These protocols are typically used for authentication and domain controller interaction.  
 This pattern suggests possible lateral movement or interaction with a compromised domain controller.
 
----
 
 ## 5. Screenshots
 
-All evidence is stored in the `screenshots/` directory:
-
-├── 01-dns-flood.png
-├── 02-suspicious-subdomains.png
-├── 03-dns-internal-ip.png
-├── 04-traffic-to-10.0.19.9.png
-├── 05-llmnr.png
-├── 06-nbns.png
-├── 07-smb.png
-└── 08-protocol-hierarchy.png
-
+All evidence is stored in the `evidence/` directory:
 
 Each screenshot supports one of the findings listed above.
 
----
 
 ## 6. Conclusion
 
@@ -94,12 +76,10 @@ If this activity happened in a real environment, I would recommend:
 - Checking for lateral movement attempts  
 - Running an endpoint investigation on the affected workstation  
 
-This exercise helped me strengthen my skills in traffic analysis and event reconstruction, which are key responsibilities in a SOC Analyst role.
-
 ---
 
 ## 7. Author
 **Javier Ávila**  
-
+**Date NOV/2025**
 GitHub: *(your link here)*  
 LinkedIn: *(your link here)*
