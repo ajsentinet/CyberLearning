@@ -1,0 +1,68 @@
+# Top 5 Findings – PCAP Analysis  
+**Author:** Javier Ávila  
+**Tools:** Wireshark  
+**Date:** 2025  
+
+---
+
+## 1. High-volume DNS traffic to suspicious domain
+
+I observed an unusually large number of DNS queries to **burnincandle.com** and related subdomains.  
+This may indicate automated communication or a domain generation algorithm (DGA).
+
+**Screenshot:**  
+![DNS Flood](screenshots/dns-flood.png)
+
+---
+
+## 2. Multiple suspicious subdomains (possible DGA behavior)
+
+The DNS traffic included strange and repetitive subdomains such as:  
+- `pad.burnincandle.com`  
+- `burnincandle-dc.burnincandle.com`  
+
+These names do not look legitimate.
+
+**Screenshot:**  
+![Suspicious Subdomains](screenshots/subdomains.png)
+
+---
+
+## 3. DNS response resolving to internal IP (10.0.19.9)
+
+The suspicious domain resolved to an internal address (**10.0.19.9**) instead of an external IP.  
+This is abnormal and indicates internal redirection or sandbox behavior.
+
+**Screenshot:**  
+![Internal IP Response](screenshots/internal-ip.png)
+
+---
+
+## 4. Internal reconnaissance using LLMNR and NBNS
+
+There was active LLMNR and NBNS traffic including name resolution requests.  
+Attackers often abuse these protocols for host discovery.
+
+**LLMNR Screenshot:**  
+![LLMNR](screenshots/llmnr.png)
+
+**NBNS Screenshot:**  
+![NBNS](screenshots/nbns.png)
+
+---
+
+## 5. SMB, LDAP, and DCERPC communication with the same internal host
+
+After contacting the suspicious domain, the workstation communicated with **10.0.19.9** using SMB, LDAP, and DCERPC.  
+This behavior is consistent with post-exploitation or lateral movement attempts.
+
+**Screenshot:**  
+![SMB & Internal Traffic](screenshots/smb.png)
+
+---
+
+## Summary
+
+These findings show a combination of DNS anomalies, internal reconnaissance, and communication with an internal host using domain controller protocols.  
+If this activity occurred in a real network, it would require immediate investigation and endpoint analysis.
+
