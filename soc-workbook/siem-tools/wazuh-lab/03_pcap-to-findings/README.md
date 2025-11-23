@@ -80,6 +80,4 @@ If this activity happened in a real environment, I would recommend:
 
 ## 7. Author
 **Javier Ávila**  
-**Date NOV/2025**
-GitHub: *(your link here)*  
-LinkedIn: *(your link here)*
+Date: NOV/2025
