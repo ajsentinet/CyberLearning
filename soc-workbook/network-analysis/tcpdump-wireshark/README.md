@@ -1,115 +1,100 @@
+# Network Traffic Capture and Analysis – tcpdump and Wireshark
 
-# Captura de tráfico de red con tcpdump y Wireshark
+Date: October 5, 2025  
+File: capture_20251005_163407.pcap  
+Tools used: tcpdump, Wireshark  
+System: Kali Linux
 
-Fecha: 		5 de octubre de 2025  
-Archivo: 	captura_20251005_163407.pcap  
-Herramientas: 	tcpdump  y Wireshark  
-Sistema: 	Kali Linux
+## Objective
 
----
+Capture real network traffic from my machine while browsing common websites and analyze the main protocols involved (DNS, TCP, TLS, and HTTP).  
+The goal is to understand how communication flows across the network and the role of each protocol in the process.
 
-## Objetivo
-Capturar tráfico real de mi máquina mientras navego por sitios comunes y analizar los principales protocolos involucrados (DNS, TCP, TLS y HTTP).  
-El propósito es entender cómo fluye la comunicación en la red y qué papel tiene cada protocolo dentro del proceso.
+## Procedure
 
----
+1. Opened a terminal in Kali Linux and started the capture using:  
+   sudo tcpdump -i any -s 0 -w capture_20251005_163407.pcap
 
-## Procedimiento
-1. Abrí mi terminal en Kali y ejecuté el comando:
-    
-    sudo tcpdump -i any -s 0 -w "$CAP"
+   This captured all traffic from any network interface.
 
-   Esto comenzó la captura de todo el tráfico desde cualquier interfaz.  
-   Navegué por sitios como **LinkedIn**, **Amazon** y **YouTube** durante aproximadamente un minuto.
-![CAPTURA Analysis](./captura.png)
+![CAPTURE Analysis](evidence/captura.png)
 
-2. Cuando terminé, presioné `Ctrl + C` para detener la captura.  
-   El sistema mostró que se habían capturado más de **61,000 paquetes** sin pérdida de datos.
 
-3. Abrí el archivo en Wireshark con:
+2. Browsed several websites for about one minute (LinkedIn, Amazon, YouTube).
 
-    wireshark ~/CyberLearning/soc-workbook/capturas/"$CAP"
-   ![WIRESHARK Analysis](./wireshark.png)
-   
+3. Stopped the capture with Ctrl+C.  
+   The terminal reported more than 61,000 packets captured with no packet loss.
 
-5. En Wireshark, utilicé filtros para observar diferentes tipos de tráfico:
-   - dns
-   - tcp
-   - tls
-   - http
+4. Opened the file in Wireshark using:  
+   wireshark capture_20251005_163407.pcap
 
----
+![WIRESHARK Analysis](evidence/wireshark.png)
 
-## Análisis por protocolo
+5. Applied filters in Wireshark to inspect specific types of traffic:  
+   dns  
+   tcp  
+   tls  
+   http
 
-### 🔹 DNS (Domain Name System)
-Observé varias consultas desde mi máquina local (**192.168.1.93**) hacia el servidor DNS del router (**192.168.1.254**).  
-Entre los dominios consultados estaban:
+## Protocol analysis
 
+### DNS
+
+Observed several DNS queries from my machine (192.168.1.93) to the router's DNS server (192.168.1.254).  
+Domains queried included:  
 - example.org  
 - accounts.google.com  
 - www.linkedin.com  
-- collector-pxdojv695v.protechts.net (servicio automático usado por navegadores o antivirus)
+- collector-pxdojv695v.protechts.net
 
-Cada consulta fue respondida correctamente con direcciones IP válidas, lo que indica que el sistema resolvió nombres sin errores.
-![DNS Analysis](./dns.png)
+All DNS queries received valid responses.
 
----
+![DNS Analysis](evidence/dns.png)
 
-### 🔹 TCP (Transmission Control Protocol)
-El análisis mostró el establecimiento de conexiones entre mi equipo y servidores externos en los puertos **80 (HTTP)** y **443 (HTTPS)**.  
-Pude identificar el **proceso de tres pasos (SYN, SYN-ACK, ACK)** típico del handshake TCP.
+### TCP
 
-Esto confirma que las conexiones se establecieron correctamente y que no hubo retransmisiones ni fallos.
-![TCP Analysis](./tcp.png)
+Identified TCP handshakes between my machine and external servers on ports 80 (HTTP) and 443 (HTTPS).  
+The SYN → SYN/ACK → ACK sequence was clearly visible.  
+No retransmissions or connection failures were detected.
 
----
+![TCP Analysis](evidence/tcp.png)
 
-### 🔹 TLS (Transport Layer Security)
-Luego del handshake TCP, se observaron varios paquetes con el protocolo **TLSv1.3**, donde mi equipo se conectó a direcciones como:
+### TLS
 
-- 172.64.148.235 (servidores de Mozilla/Cloudflare)  
+After the TCP handshake, several TLSv1.3 packets were observed.  
+Connections included servers such as:  
+- 172.64.148.235 (Mozilla/Cloudflare)  
 - 44.215.141.185 (Amazon Web Services)
 
-En uno de los paquetes aparecía un **Client Hello**, que inicia el proceso de cifrado.  
-Esto indica que la comunicación se estableció de forma segura usando HTTPS.
-![TLS Analysis](./tls.png)
+Client Hello packets confirmed the start of encrypted HTTPS communication.
+
+![TLS Analysis](evidence/tls.png)
+
+### HTTP
+
+Using the http filter, found unencrypted HTTP requests on port 80.  
+One example:  
+GET /success.txt?ipv4 HTTP/1.1  
+Host: detectportal.firefox.com  
+
+This request is used by Firefox to verify Internet connectivity.  
+HTTP traffic appeared in plain text, confirming the absence of encryption.
+
+![HTTP Analysis](evidence/http.png)
+
+
+## Conclusion
+
+This analysis helped me understand how multiple protocols interact during normal web browsing.  
+Key observations:
+
+- DNS resolves domain names  
+- TCP establishes the initial connection  
+- TLS provides encryption for secure communication  
+- HTTP shows clear-text requests when no encryption is used  
+
+The capture and analysis process showed how each protocol contributes to network communication and how their behavior can indicate normal or unusual activity.
 
 ---
 
-### 🔹 HTTP (Hypertext Transfer Protocol)
-Finalmente, filtrando por http, encontré peticiones sin cifrar (puerto 80) hacia:
-- detectportal.firefox.com, con una solicitud:
-
-    GET /success.txt?ipv4 HTTP/1.1
-
-  Esta petición es legítima: Firefox la usa para verificar si hay conexión a Internet.
-
-El tráfico HTTP se mostraba completamente visible, confirmando que el contenido viaja en texto claro cuando no hay cifrado.
-![HTTP Analysis](./http.png)
-
----
-
-## Conclusión
-Esta práctica me ayudó a comprender la relación entre los distintos protocolos que intervienen cuando navego por Internet.  
-Aprendí a identificar:
-- Cómo mi máquina resuelve dominios con DNS.  
-- Cómo se establecen las conexiones TCP y luego se protegen con TLS.  
-- Qué aspecto tiene un paquete HTTP en texto plano.
-
-También confirmé que puedo capturar, guardar y analizar tráfico real sin errores.  
-Fue interesante ver que **cada paquete cuenta una historia**, y que al entenderla puedo distinguir entre tráfico normal y algo que no debería estar ahí.
-
----
-
-## Reflexión personal
-Antes de hacer esta práctica conocía tcpdump y Wireshark muy basicamente. Sabía que servían para capturar y analizar tráfico, ya los había usado pero realmente no entendía qué mostraban ni su valiosa utilidad.  
-Ahora me siento mucho más seguro. Ya me muevo con más confianza tanto en la terminal como en la interfaz de Wireshark.  
-Lo que más me gustó es que empiezo a ver cómo todo se conecta: redes, protocolos y ciberseguridad ya no son cosas separadas, sino partes de lo mismo.  
-Siento que este aprendizaje ya forma parte de mí, y eso me motiva a seguir aprendiendo hasta que todo esto me resulte algo natural.
-
----
-
-Puedes consultar la práctica completa en mi repositorio de GitHub:  
-👉 [Análisis de tráfico con tcpdump y Wireshark](https://github.com/Reivajak/CyberLearning/blob/main/soc-workbook/capturas/captura1/captura1_readme.md)
-
+Javier Avila

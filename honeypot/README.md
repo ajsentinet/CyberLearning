@@ -1,100 +1,83 @@
+# Simple Honeypot in Python and Connection Analyzer
 
-#  Honeypot Simple en Python + Analizador de Conexiones
+This project contains a simple honeypot that simulates a fake server and logs connection attempts, as well as a Python script that analyzes those logs to extract useful information.
 
-Este proyecto consiste en un *honeypot simple* que simula un servidor falso y registra intentos de conexión, y un *script de análisis en Python* que procesa esos registros para extraer información útil.
+## What this project does
 
----
+### simple_honeypot.py
 
-##  ¿Qué hace este proyecto?
+- Listens for incoming connections on port 2222.
+- Simulates a fake server named tarjetas_clientes_2025.
+- Records the following information:
+  - Visitor IP address
+  - Remote port
+  - Date and time
+  - Data sent by the client
+- Saves everything into the honeypot-logs.csv file.
 
-###  `honeypot_simple.py`
-- Escucha conexiones en el puerto **2222**.
-- Simula un servidor con el nombre `tarjetas_clientes_2025`.
-- Registra:
-  - IP del visitante
-  - Puerto remoto
-  - Fecha y hora
-  - Datos enviados
-- Guarda los datos en `registros_honeypot.csv`.
+### honeypot_log_analysis.py
 
-###  `analizador_registros.py`
-- Lee los registros del archivo `.csv`.
-- Muestra:
-  - Número total de conexiones registradas
-  - Conexiones que enviaron datos
-  - Cantidad de intentos por IP
-  - Puertos remotos usados por los clientes
+- Reads the log file in CSV format.
+- Displays:
+  - Total number of recorded connections 
+  - Connections where data was received 
+  - Number of attempts per IP address 
+  - Remote ports used by the clients 
 
----
+## How to run
 
-##  Cómo ejecutarlo
+### 1. Run the honeypot
 
-### 1. Ejecutar el honeypot:  python3 honeypot_simple.py
+Command:
+python3 simple_honeypot.py
 
-- Desde otra terminal o equipo en la red local, conéctate con:
+From another terminal or a device on the same network, connect using:
+nc 2222
+Example:
+nc 192.168.1.93 2222
 
-    nc <IP-del-servidor> 2222
+![simple-honeypot](evidence/simple-honeypot.png)
 
-    Ejemplo:  nc 192.168.1.93 2222
+### 2. Run the analyzer
 
+Command:
+python3 honeypot-log-analysis.py
 
-### 2. Ejecutar el analizador:  python3 analizador_registros.py
+## Example output (honeypot)
 
+[+] Server tarjetas_clientes_2025 active on port 2222
+[*] Waiting for connections...
+[!] Connection detected from 192.168.1.75:54089 at 2025-06-10 18:22:37
+    Data received: Soy un cliente  
 
----
+## Example content of honeypot_logs.csv
 
-##  Ejemplo de salida (honeypot)
-
-```
-[+] Servidor tarjetas_clientes_2025 activo en el puerto 2222
-[*] Esperando conexiones...
-[!] Conexión detectada de 192.168.1.75:54089 a las 2025-06-10 18:22:37
-    ↳ Datos recibidos: Hola
-```
-
----
-
-##  Ejemplo de contenido del archivo `registros_honeypot.csv`
-
-```
 fecha_hora,ip,puerto,dato_recibido
-2025-06-10 18:22:37,192.168.1.75,54089,Hola
+2025-06-10 18:22:37,192.168.1.75,54089,Preguntas frecuentes
 2025-06-10 18:22:40,192.168.1.75,54090,[Sin datos enviados]
-```
 
----
+## Example output (analyzer)
 
+Records loaded: 15 rows
+Connections with data: 5
 
-##  Ejemplo de salida (analizador)
-
-```
- Registros cargados: 15 filas
-
- Conexiones con datos enviados: 5
-
- Conexiones por dirección IP:
+Attempts per IP address:
 192.168.1.75    12
 192.168.1.88     3
 
- Puertos remotos usados:
+Remote ports used:
 54089    4
 54090    3
 ...
-```
+
+![honeypot-log-analysis](evidence/honeypot-log-analysis.png)
+
+## What I learned
+
+- Creating TCP servers using sockets.
+- Structured logging of connections in CSV format.
+- Event analysis using Python and pandas.
+- First steps in monitoring network activity.
 
 ---
-
-##  Lo que aprendí
-
-- Uso de `sockets` para crear servidores TCP.
-- Registro estructurado de conexiones en `.csv`.
-- Análisis de eventos con `pandas`.
-- Primer acercamiento al monitoreo de actividad en red.
-
----
-
-## 👨‍💻 Autor
-
-**Javier Ávila Andrade**  
-Estudiante de Ingeniería en Comunicaciones y Electrónica – IPN  
-Enfocado en ciberseguridad, automatización y análisis de datos.
+Javier Avila
