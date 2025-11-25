@@ -1,6 +1,6 @@
 # Port Scanner – Python (Three Versions)
 
-This folder contains three versions of a Python-based port scanner. Each version represents a step in my learning process, going from a simple scan to a faster and more complete implementation using multithreading. These scripts help me practice basic network scanning concepts and understand how ports and common services work.
+This folder contains three versions of a Python-based port scanner, going from a simple scan to a faster and more complete implementation using multithreading. These scripts help me practice basic network scanning concepts and understand how ports and common services work.
 
 ## Project structure
 

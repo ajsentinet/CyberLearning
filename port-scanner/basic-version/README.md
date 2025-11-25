@@ -12,7 +12,7 @@ Port scanners are commonly used in cybersecurity for both defensive and assessme
 
 ## How to use
 
-1. Run the script named port_scanner.py
+1. Run the script named port-scanner.py
 2. Enter an IP address or domain when prompted
    Example targets: google.com, scanme.nmap.org
 3. The program will display which ports respond as open

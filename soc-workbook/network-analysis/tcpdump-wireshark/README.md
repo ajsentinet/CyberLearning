@@ -17,7 +17,7 @@ The goal is to understand how communication flows across the network and the rol
 
    This captured all traffic from any network interface.
 
-![CAPTURE Analysis](evidence/captura.png)
+![CAPTURE Analysis](evidence/capture.png)
 
 
 2. Browsed several websites for about one minute (LinkedIn, Amazon, YouTube).

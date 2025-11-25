@@ -1,11 +1,11 @@
-# 🧾 Practice: System Log Analysis (Linux)
+# Practice: System Log Analysis (Linux)
 
-## 🎯 Objective
+## Objective
 Explore and analyze system logs using `journalctl` in order to identify important events, warnings, and errors that affect the operating system's performance.
 
 ---
 
-## ⚙️ Commands used
+## Commands used
 ```bash
 journalctl -n 100 --no-pager
 journalctl -p warning -n 50 --no-pager
@@ -16,14 +16,14 @@ journalctl -p warning -n 50 --no-pager > evidencia_logs.txt
 
 ---
 
-## 🔍 Practice description
+## Practice description
 During this practice, a detailed analysis of system logs was performed using the `journalctl` tool.  
 Logs were filtered by type: **general**, **warning**, **error**, and **NetworkManager events** were also examined.  
 The main goal was to understand how different system processes leave traces in log files and how that information can be interpreted for monitoring and troubleshooting.
 
 ---
 
-## 🖼️ Evidence
+## Evidence
 
 ### 1️⃣ General logs
 ![General logs](./evidence/logs_general.png)  
@@ -47,7 +47,7 @@ Exported log file containing the most recent warning events for later analysis.
 
 ---
 
-## ✍️ Conclusion
+## Conclusion
 This practice helped me understand that logs are an essential source of information for system analysis and security.  
 Each line in the logs tells part of the technical story of the operating system.  
 Learning to read, filter, and classify these events is a key step in developing monitoring and incident-detection skills within a SOC environment.

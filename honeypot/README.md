@@ -15,7 +15,7 @@ This project contains a simple honeypot that simulates a fake server and logs co
   - Data sent by the client
 - Saves everything into the honeypot-logs.csv file.
 
-### honeypot_log_analysis.py
+### honeypot-log-analysis.py
 
 - Reads the log file in CSV format.
 - Displays:
@@ -29,14 +29,13 @@ This project contains a simple honeypot that simulates a fake server and logs co
 ### 1. Run the honeypot
 
 Command:
-python3 simple_honeypot.py
+python3 simple-honeypot.py
 
 From another terminal or a device on the same network, connect using:
 nc 2222
 Example:
 nc 192.168.1.93 2222
 
-![simple-honeypot](evidence/simple-honeypot.png)
 
 ### 2. Run the analyzer
 
@@ -45,30 +44,13 @@ python3 honeypot-log-analysis.py
 
 ## Example output (honeypot)
 
-[+] Server tarjetas_clientes_2025 active on port 2222
-[*] Waiting for connections...
-[!] Connection detected from 192.168.1.75:54089 at 2025-06-10 18:22:37
-    Data received: Soy un cliente  
+![simple-honeypot](evidence/simple-honeypot.png)
 
 ## Example content of honeypot_logs.csv
 
-fecha_hora,ip,puerto,dato_recibido
-2025-06-10 18:22:37,192.168.1.75,54089,Preguntas frecuentes
-2025-06-10 18:22:40,192.168.1.75,54090,[Sin datos enviados]
+![simple-honeypot](evidence/simple-honeypot.png)
 
 ## Example output (analyzer)
-
-Records loaded: 15 rows
-Connections with data: 5
-
-Attempts per IP address:
-192.168.1.75    12
-192.168.1.88     3
-
-Remote ports used:
-54089    4
-54090    3
-...
 
 ![honeypot-log-analysis](evidence/honeypot-log-analysis.png)
 

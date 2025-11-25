@@ -29,7 +29,7 @@ nmap --script=vuln 192.168.1.10       # Run basic vulnerability scripts
 3. Export the results in `.txt` and `.xml` format.  
 4. Save all evidence in:
    ```
-   soc-workbook/captures/nmap-scan/evidence
+   soc-workbook/nmap-scan/evidence
 
    ```
 5. Review the open ports and note which services are running (e.g., SSH, HTTP, HTTPS).  
