@@ -25,7 +25,7 @@ In this version, the performance is optimized using multithreading, allowing man
 3. Enter the target IP address or domain when prompted (for example: scanme.nmap.org)
 4. The script will display open ports and the service associated with each one in real time
 
-![threaded-port-scanner](evidence/threaded-port-scanner)
+![threaded-port-scanner](evidence/threaded-port-scanner.png)
 
 ## Author
 

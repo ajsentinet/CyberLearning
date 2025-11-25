@@ -12,7 +12,7 @@ Knowing which ports and services are exposed on a server or device is essential 
 
 ## How it works
 
-1. Run the script named advanced_port_scanner.py  
+1. Run the script named advanced-port-scanner.py  
 2. Enter an IP address or domain when prompted (for example: scanme.nmap.org or a local IP)  
 3. The script scans ports from 20 to 1024 and prints the ones that respond as open, along with their corresponding service names  
 

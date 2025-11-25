@@ -17,7 +17,7 @@ Port scanners are commonly used in cybersecurity for both defensive and assessme
    Example targets: google.com, scanme.nmap.org
 3. The program will display which ports respond as open
 
-![port-scanner](evidence/port-scan.png)
+![port-scanner](evidence/port-scanner.png)
 
 ## What I learned
 
