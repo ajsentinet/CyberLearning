@@ -29,7 +29,7 @@ The DNS traffic follows a **normal request-response pattern**. No **suspicious d
 **Display filter used:**  
 icmp || icmpv6
 
-![ICMP and ICMPv6 traffic](evidence/03-pcap-network-analysis/03-icmp-icmpv6-traffic.png)
+![ICMP and ICMPv6 traffic](evidence/03-pcap-network-analysis/04-icmp-icmpv6-traffic.png)
 
 **Observed activity:**
 - **ICMP Destination Unreachable** messages
@@ -42,7 +42,7 @@ This traffic is consistent with **normal network diagnostics** and **connectivit
 **Display filter used:**  
 http
 
-![HTTP traffic capture](evidence/03-pcap-network-analysis/04-http-traffic.png)
+![HTTP traffic capture](evidence/03-pcap-network-analysis/05-http-traffic.png)
 
 **Observed activity:**
 - **HTTP GET** request to `example.com`
@@ -55,7 +55,7 @@ The HTTP communication is **legitimate and expected**. It represents **standard 
 **Display filter used:**  
 tcp.analysis.retransmission
 
-![TCP retransmissions](evidence/03-pcap-network-analysis/05-tcp-retransmissions.png)
+![TCP retransmissions](evidence/03-pcap-network-analysis/06-tcp-retransmissions.png)
 
 **Observed activity:**
 - **TCP retransmissions** on port 80
