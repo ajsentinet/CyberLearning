@@ -57,7 +57,7 @@ The sequence indicates authentication failures prior to successful privilege esc
 
 One of the most relevant alerts corresponds to repeated password failures detected by Wazuh.
 
-![SSH Multiple Password Failures](evidence/ssh-bruteforce/ssh-multiple-password-failures-details.png)
+![SSH Multiple Password Failures](evidence/ssh-bruteforce/ssh-multiple-password-failures-datails.png)
 ![SSH Multiple Password Failures Extended](evidence/ssh-bruteforce/ssh-multiple-password-failures-extended.png)
 
 ### Technical details:
