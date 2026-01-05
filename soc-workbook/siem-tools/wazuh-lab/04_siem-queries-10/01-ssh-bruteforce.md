@@ -24,7 +24,7 @@ The objective of this scenario is to demonstrate **SOC Analyst skills** in detec
 
 The first indicator of suspicious activity was identified in the **Threat Hunting Dashboard** after applying the `ssh` filter.
 
-![SSH Threat Hunting Dashboard](evidence/ssh-bruteforce/ssh-threat-hunting-dashboard.png)
+![SSH Threat Hunting Dashboard](evidence/01-ssh-bruteforce/ssh-threat-hunting-dashboard.png)
 
 ### Observations:
 - **12 total SSH-related alerts**
@@ -42,7 +42,7 @@ This behavior suggests repeated unauthorized access attempts.
 
 A detailed review of SSH-related events confirms multiple failed authentication attempts followed by privileged activity.
 
-![SSH Authentication Events Table](evidence/ssh-bruteforce/ssh-authentication-events-table.png)
+![SSH Authentication Events Table](evidence/01-ssh-bruteforce/ssh-authentication-events-table.png)
 
 ### Relevant event types:
 - `PAM: User login failed`
@@ -57,8 +57,8 @@ The sequence indicates authentication failures prior to successful privilege esc
 
 One of the most relevant alerts corresponds to repeated password failures detected by Wazuh.
 
-![SSH Multiple Password Failures](evidence/ssh-bruteforce/ssh-multiple-password-failures-datails.png)
-![SSH Multiple Password Failures Extended](evidence/ssh-bruteforce/ssh-multiple-password-failures-extended.png)
+![SSH Multiple Password Failures](evidence/01-ssh-bruteforce/ssh-multiple-password-failures-datails.png)
+![SSH Multiple Password Failures Extended](evidence/01-ssh-bruteforce/ssh-multiple-password-failures-extended.png)
 
 ### Technical details:
 - **Rule ID:** 2502  
@@ -76,8 +76,8 @@ This alert confirms multiple failed login attempts from the same source.
 
 Additional alerts show repeated PAM authentication failures related to SSH access.
 
-![SSH PAM Authentication Failure](evidence/ssh-bruteforce/ssh-pam-authentication-failure-details.png)
-![SSH PAM Authentication Failure Extended](evidence/ssh-bruteforce/ssh-pam-authentication-failure-extended.png)
+![SSH PAM Authentication Failure](evidence/01-ssh-bruteforce/ssh-pam-authentication-failure-details.png)
+![SSH PAM Authentication Failure Extended](evidence/01-ssh-bruteforce/ssh-pam-authentication-failure-extended.png)
 
 ### Technical details:
 - **Rule ID:** 5503  
@@ -106,8 +106,3 @@ The analyzed alerts show clear evidence of **repeated SSH authentication failure
 Wazuh successfully detected, classified, and correlated these events, allowing timely visibility into potential unauthorized access attempts.  
 This scenario demonstrates effective **threat detection and investigation workflows** expected from a **SOC Analyst**.
 
----
-
-## Evidence
-
-All supporting screenshots and visual evidence are stored in the `evidence/` directory and referenced throughout this document.

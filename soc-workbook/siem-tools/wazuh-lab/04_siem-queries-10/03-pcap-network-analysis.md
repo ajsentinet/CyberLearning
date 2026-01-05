@@ -1,4 +1,4 @@
-#Network Traffic Analysis (PCAP Review)
+# Network Traffic Analysis (PCAP Review)
 
 ## Objective
 Analyze **captured network traffic** using a PCAP file and determine whether the observed activity represents **normal network behavior** or **potential security issues**.
@@ -14,13 +14,13 @@ The analysis focuses on **DNS, ICMP, HTTP, and TCP traffic**, using **Wireshark 
 **Display filter used:**  
 dns
 
-![DNS traffic overview](/evidence/03-pcap-network-analysis/01-dns-traffic-filter.png)
+![DNS traffic overview](evidence/03-pcap-network-analysis/01-dns-traffic-filter.png)
 
 **Observed activity:**
 - DNS queries and responses for common domains such as **google.com**, **example.com**, **openai.com**, and **azure-dns.net**
 - Record types observed: **A, AAAA, NS, PTR, DNSKEY**
 
-![Detailed DNS queries](/evidence/03-pcap-network-analysis/02-dns-detailed-queries.png)
+![Detailed DNS queries](evidence/03-pcap-network-analysis/02-dns-detailed-queries.png)
 
 **Analysis:**  
 The DNS traffic follows a **normal request-response pattern**. No **suspicious domains** or **abnormal query volumes** were identified.
@@ -29,7 +29,7 @@ The DNS traffic follows a **normal request-response pattern**. No **suspicious d
 **Display filter used:**  
 icmp || icmpv6
 
-![ICMP and ICMPv6 traffic](/evidence/03-pcap-network-analysis/03-icmp-icmpv6-traffic.png)
+![ICMP and ICMPv6 traffic](evidence/03-pcap-network-analysis/03-icmp-icmpv6-traffic.png)
 
 **Observed activity:**
 - **ICMP Destination Unreachable** messages
@@ -42,7 +42,7 @@ This traffic is consistent with **normal network diagnostics** and **connectivit
 **Display filter used:**  
 http
 
-![HTTP traffic capture](/evidence/03-pcap-network-analysis/04-http-traffic.png)
+![HTTP traffic capture](evidence/03-pcap-network-analysis/04-http-traffic.png)
 
 **Observed activity:**
 - **HTTP GET** request to `example.com`
@@ -55,7 +55,7 @@ The HTTP communication is **legitimate and expected**. It represents **standard 
 **Display filter used:**  
 tcp.analysis.retransmission
 
-![TCP retransmissions](/evidence/03-pcap-network-analysis/05-tcp-retransmissions.png)
+![TCP retransmissions](evidence/03-pcap-network-analysis/05-tcp-retransmissions.png)
 
 **Observed activity:**
 - **TCP retransmissions** on port 80
@@ -68,5 +68,5 @@ TCP retransmissions are common in **normal network conditions** and may occur du
 - All analyzed traffic corresponds to **normal network behavior**
 - No **indicators of compromise** or **suspicious activity** were detected
 
-## ✅ Conclusion
+## Conclusion
 The observed **DNS, ICMP, HTTP, and TCP traffic** reflects **expected behavior** in a typical network environment.
